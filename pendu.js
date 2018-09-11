@@ -51,12 +51,18 @@ class Game {
       // - exemple : v_ch_e
       // - Utiliser une boucle for et la concaténation
       // - (9 lignes)
-      word.split('');
-
-
-      let displayedWord = word.replace( letters , '_');
-
-      return displayedWord;
+      let displayedWord = [];
+      let arrayedWord = word.split('');
+      for (let i = 0 ; i ++ ; i < letters.length) {
+        for (let j = 0 ; j ++ ; j < arrayedWord.length) {
+          if (letters[i] == arrayedWord[j]) {
+            displayedWord.push(arrayedWord[j]);
+          }else {
+            displayedWord.push('_');
+          }
+        }
+      }
+      return displayedWord.join(''); // pas encore ça..
     }
 
     function prompt(cb) {
