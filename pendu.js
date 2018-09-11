@@ -21,8 +21,8 @@ class Game {
     function init() {
       lives = 5
 
-      word = // TODO: récupérer un mot random depuis WORD_LIST (1 ligne)
-        letters = []
+      word = WORD_LIST[ Math.floor(Math.random()) ]    // TODO: récupérer un mot random depuis WORD_LIST (1 ligne)
+      letters = []
       // Count without duplicated
       missing = Array.prototype.filter.call(word, (letter, i) => {
         return word.indexOf(letter) == i
@@ -36,6 +36,12 @@ class Game {
       // - modifier `lives` et `missing` en conséquence
       // - ne retourne rien
       // - (6 lignes)
+      if (!letters.includes(letter)) {
+        letters.push(letter);
+      }else{
+        lives --;
+        missing --; // pas encore ça..
+      }
     }
 
     function displayWord() {
@@ -45,6 +51,12 @@ class Game {
       // - exemple : v_ch_e
       // - Utiliser une boucle for et la concaténation
       // - (9 lignes)
+      word.split('');
+
+
+      let displayedWord = word.replace( letters , '_');
+
+      return displayedWord;
     }
 
     function prompt(cb) {
@@ -53,7 +65,7 @@ class Game {
     }
 
     function onAnswer(answer) {
-      addLetter(/* TODO: appeler la fonction addLetter en envoyant la première lettre de `answer` (1 ligne) */)
+      addLetter( answer[0] ); /* TODO: appeler la fonction addLetter en envoyant la première lettre de `answer` (1 ligne) */
 
       if (missing > 0 && lives > 0) {
         prompt(onAnswer)
